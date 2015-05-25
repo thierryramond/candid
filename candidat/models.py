@@ -10,8 +10,33 @@
 
 from django.db import models
 
+class Etudiant(models.Model):
+    id = models.IntegerField(db_column='Id', primary_key=True)
+    nom = models.CharField(db_column='Nom', max_length=25, blank=True, null=True)
+    prenom = models.CharField(db_column='Prenom', max_length=28, blank=True, null=True)
+    date_naissance =  models.IntegerField(db_column="date_naissance",blank=True, null=True)
+    adresse = models.CharField(db_column='adresse', max_length=100, blank=True, null=True)
+    email = models.EmailField(db_column='email', unique=True, blank=True, null=True)
+
+    def __str__(self):
+        return '{0} {1}'.format(self.prenom, self.nom)
+
+class Annee(models.Model):
+    formation = models.CharField(db_column='Formation', max_length=100, blank=True, null=True)
+    etablissement  = models.CharField(db_column='Etablissement', max_length=100, blank=True, null=True)
+    millesime = models.CharField(db_column='Millesime', max_length=15, blank=True, null=True)
+
+class Cursus(models.Model):
+    Etudiant= models.ForeignKey(Etudiant)
+    Annee = models.ForeignKey(Annee)
 
 
+class Ncandidature(models.Model):
+    millesime = models.CharField(db_column='Millesime', max_length=9, blank=True, null=True)
+    formation = models.CharField(db_column='Formation', max_length=30, blank=True, null=True)
+    reponse = models.CharField(db_column='Reponse', max_length=10, blank=True, null=True)
+    responsable = models.CharField(db_column='Responsable', max_length=30, blank=True, null=True)
+    confirmation = models.CharField(db_column='Confirmation', max_length=30, blank=True, null=True)
 
 class Candidature(models.Model):
     admission20082009 = models.CharField(db_column='Admission20082009', max_length=24, blank=True, null=True)  # Field name made lowercase.
