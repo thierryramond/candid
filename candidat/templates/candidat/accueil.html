@@ -1,0 +1,16 @@
+{% extends "candidat/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="vcontainer">
+<logo><img src=" {% static 'images/dmo.png' %}"  width="200"></logo>
+<titre> Bienvenue sur le site des Candidatures</titre>
+
+</div>
+
+<div class="hcontainer">
+<bouton><a href="{% url 'nouveau' %}">Entrer une nouvelle candidature</a></bouton>
+<bouton><a href="{% url 'candidats' %}">Afficher des candidatures existantes</a></bouton>
+</div>
+
+
+{% endblock content %}

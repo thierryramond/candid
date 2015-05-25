@@ -1,0 +1,24 @@
+{% extends "candidat/base.html" %}
+
+{% block title %}Nouvelle Candidature{% endblock %}
+
+{% block content %}
+<h1>Nouvelle Candidature</h1>
+
+<form method="post"   action="{% url 'nouveau' %}">
+    {% csrf_token %}
+    <table>
+    <thead>
+    <th>Année</th>
+    <th>Nom</th><th>Prénom</th>
+    </thead>
+    <tbody>
+    <tr>
+    <td>{{ form.année }}</td><td>{{ form.nom }}</td><td>{{ form.prénom }}</td>
+    </tr>
+    </tbody>
+    </table>
+    <input id="id_submit" type="submit"/>
+</form>
+
+{% endblock content %}
