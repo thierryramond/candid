@@ -12,6 +12,7 @@ from django.db import models
 
 class Etudiant(models.Model):
     id = models.IntegerField(db_column='Id', primary_key=True)
+    genre = models.CharField(db_column='genre',max_length=25, blank=True, null=True)
     nom = models.CharField(db_column='Nom', max_length=25, blank=True, null=True)
     prenom = models.CharField(db_column='Prenom', max_length=28, blank=True, null=True)
     date_naissance =  models.IntegerField(db_column="date_naissance",blank=True, null=True)
@@ -20,6 +21,10 @@ class Etudiant(models.Model):
 
     def __str__(self):
         return '{0} {1}'.format(self.prenom, self.nom)
+
+    def get_value(self):
+        return [(field.value(self)) for field in Etudiant._meta.get_fields(include_hidden=False)]
+
 
 class Annee(models.Model):
     formation = models.CharField(db_column='Formation', max_length=100, blank=True, null=True)

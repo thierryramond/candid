@@ -3,8 +3,10 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView, FormView
-from candidat.models import Candidature
+from candidat.models import Candidature, Etudiant
 from candidat.forms import * 
+
+
 
 
 #-----------------------------------------------------------------------------
@@ -13,6 +15,21 @@ from candidat.forms import *
 def home(request):
 	return render(request,'candidat/accueil.html',{'datetime': timezone.now()})
 
+
+#-----------------------------------------------------------------------------
+
+class EtudiantListView(ListView):
+	model = Etudiant
+	template_name = 'candidat/etudiant/etudiant_list.html'
+	ordering = 'nom'
+
+	def get_context_data(self, **kwargs):
+		context = super(EtudiantListView, self).get_context_data(**kwargs)
+		context['datetime'] = timezone.now()
+		context['the_fields'] = [f.name for f in Etudiant._meta.get_fields()]
+		#Etudiant._meta.get_all_field_names()
+		return context
+		
 
 #-----------------------------------------------------------------------------
 #

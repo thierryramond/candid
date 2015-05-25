@@ -13,5 +13,7 @@ urlpatterns = [
 
 	url(r'^candidats/', views.CandidatureListView.as_view(), name='candidats',),
 	url(r'^nouveau/', views.CandidatureCreateView.as_view(), name='nouveau'),
+
+	url(r'etudiant_list/', views.EtudiantListView.as_view(),name ='etudiant_list'),
 	]
 

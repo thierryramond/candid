@@ -10,3 +10,8 @@ class CandidatureForm(forms.ModelForm):
 	class Meta:
 		model = Candidature
 		exclude = ()
+
+class EtudiantForm(forms.ModelForm):
+	class Meta:
+		model=Etudiant
+		fields= '__all__'

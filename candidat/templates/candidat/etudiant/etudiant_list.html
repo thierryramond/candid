@@ -1,0 +1,42 @@
+{% extends "candidat/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#myTable").tablesorter({sortList: [[0,0],[1,0]]}); 
+    } 
+); 
+</script>
+<div class="vcontainer">
+<logo><img src=" {% static 'images/dmo.png' %}"  width="200"></logo>
+<titre>Liste des Etudiants</titre>
+
+
+
+<table>
+<tr>
+<th style="width:20px;">id</th>
+<th style="width:150px;">Nom</th>
+<th style="width:150px;">Prénom</th>
+<th style="width:100px;">Né(e) le</th>
+<th style="width:100px;">Adresse</th>
+<th style="width:250px;">eMail</th>
+</tr>
+
+{% for item in object_list %}
+<tr>
+  	<td style="width:20px;"> {{ item.id }}</td>
+  	<td style="width:150px;">{{ item.nom }}</td>
+  	<td style="width:150px;">{{ item.prenom }}</td>
+  	<td style="width:100px;">{{ item.date_naissance}}</td>
+  	<td style="width:100px;">{{ item.adresse}}</td>
+  	<td style="width:250px;">{{ item.email }}</td>
+  </tr>
+{% endfor %}
+
+</table>
+
+</div>
+{%endblock content%}
