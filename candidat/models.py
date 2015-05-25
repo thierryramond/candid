@@ -10,12 +10,14 @@
 
 from django.db import models
 
+
+
 class Etudiant(models.Model):
     id = models.IntegerField(db_column='Id', primary_key=True)
     genre = models.CharField(db_column='genre',max_length=25, blank=True, null=True)
     nom = models.CharField(db_column='Nom', max_length=25, blank=True, null=True)
     prenom = models.CharField(db_column='Prenom', max_length=28, blank=True, null=True)
-    date_naissance =  models.IntegerField(db_column="date_naissance",blank=True, null=True)
+    date_naissance =  models.DateField(db_column="date_naissance",blank=True, null=True)
     adresse = models.CharField(db_column='adresse', max_length=100, blank=True, null=True)
     email = models.EmailField(db_column='email', unique=True, blank=True, null=True)
 
